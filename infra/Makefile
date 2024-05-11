@@ -1,4 +1,3 @@
-
 init:
 	terraform init
 

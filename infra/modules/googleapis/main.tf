@@ -12,6 +12,14 @@ locals {
 
 }
 
+resource "google_project_service" "cloudresourcemanager" {
+  project = local.project
+  service = "cloudresourcemanager.googleapis.com"
+
+  disable_dependent_services = true
+}
+
+
 resource "google_project_service" "project" {
   project  = local.project
   for_each = local.services
@@ -21,6 +29,8 @@ resource "google_project_service" "project" {
     create = "30m"
     update = "40m"
   }
+
+  depends_on = [google_project_service.cloudresourcemanager]
 
   disable_dependent_services = true
 }
