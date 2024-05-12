@@ -18,7 +18,7 @@ resource "google_compute_instance" "bastion" {
   count        = var.create ? var.instances : 0
   name         = var.instance_name
   machine_type = var.machine_type
-  project      = var.project
+  zone         = var.zone
 
   boot_disk {
     initialize_params {
@@ -27,7 +27,6 @@ resource "google_compute_instance" "bastion" {
   }
 
   network_interface {
-    subnetwork = var.subnet
 
   }
 

@@ -29,22 +29,11 @@ variable "image" {
 
 variable "machine_type" {
   description = "Machine type to deploy"
-  default = "e2-micro"
+  default     = "e2-micro"
 }
 
-variable "region" {
-  description = "Region to deploy the VM in"
-  default = "us-east4"
-}
 
-variable "subnet" {
-  description = "Subnet to deploy the VM in"
-  type = string
-
-}
-
-variable "project" {
-  description = "Project to deploy the VM in., If empty it will use the default project"
-  type    = string
-  default = ""
+variable "zone" {
+  description = "The GCP zone"
+  default     = "us-central1-a"
 }

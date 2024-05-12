@@ -39,3 +39,4 @@ terraform.rc
 .vagrant
 /.terraform/
 *.tfplan
+/*.iam.gserviceaccount.com.json
