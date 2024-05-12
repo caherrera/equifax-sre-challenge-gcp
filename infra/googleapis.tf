@@ -7,6 +7,7 @@ module "googleapis" {
     "compute.googleapis.com",
     "containerregistry.googleapis.com",
     "sqladmin.googleapis.com",
-    "sql-component.googleapis.com"
+    "sql-component.googleapis.com",
+    "servicenetworking.googleapis.com"
   ]
 }
