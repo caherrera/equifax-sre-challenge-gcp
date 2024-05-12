@@ -106,3 +106,7 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+envFrom:
+  - secretRef:
+      name: laravel
