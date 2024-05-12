@@ -1,0 +1,13 @@
+.idea
+.envrc
+.git
+.gitignore
+*-sa.json
+*-sa.json.enc
+src/.env
+src/.env.*
+src/.editorconfig
+src/.git*
+
+infra/
+helm/

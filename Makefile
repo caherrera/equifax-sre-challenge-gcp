@@ -2,8 +2,10 @@
 GOOGLE_APPLICATION_CREDENTIALS_FILE := "$(GOOGLE_CLOUD_PROJECT)-sa.json"
 GOOGLE_IAM_ACCOUNT                  := terraform@$(GOOGLE_CLOUD_PROJECT).iam.gserviceaccount.com
 DOCKER_REGISTRY                     := $(GOOGLE_CLOUD_REGION)-docker.pkg.dev
-CONTAINER_NAME                      := $(DOCKER_REGISTRY)/$(GOOGLE_CLOUD_PROJECT)/dev-wordpress/hola-mundo:latest
+IMAGE_TAG   					    := $(shell git rev-parse --short HEAD)
+CONTAINER_NAME                      := $(DOCKER_REGISTRY)/$(GOOGLE_CLOUD_PROJECT)/dev-wordpress/hola-mundo:${IMAGE_TAG}
 DOCKER_KEY_FILE                     := $(GOOGLE_APPLICATION_CREDENTIALS_FILE)
+GKE_CLUSTER_NAME                    := dev-wordpress-gke
 
 enable-services-resourcemanager:
 	gcloud services enable resourcemanager.googleapis.com ;
@@ -34,4 +36,26 @@ docker-build:
 docker-push:
 	docker push $(CONTAINER_NAME)
 
+docker-run:
+	docker run -it --rm $(CONTAINER_NAME) bash
 
+create-image-pull-secret:
+	kubectl create secret docker-registry gcr-json-key \
+		--docker-server=$(DOCKER_REGISTRY) \
+		--docker-username=_json_key \
+		--docker-password="`cat $(DOCKER_KEY_FILE)`"
+
+gcloud-list-clusters:
+	gcloud container clusters list
+
+gcloud-get-credentials:
+	gcloud container clusters get-credentials $(GKE_CLUSTER_NAME) --region $(GOOGLE_CLOUD_REGION)
+
+helm-install:
+	helm upgrade --install hola-mundo ./helm/hola-mundo --set image.tag=$(IMAGE_TAG)
+
+k-create-namespace:
+	kubectl create namespace hola-mundo
+
+create-env-vars:
+	kubectl create secret generic laravel --from-env-file=src/.env

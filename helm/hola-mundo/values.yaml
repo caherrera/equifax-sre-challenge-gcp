@@ -8,9 +8,10 @@ image:
   repository: us-central1-docker.pkg.dev/equifax-423021/dev-wordpress/hola-mundo
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "latest"
 
-imagePullSecrets: []
+imagePullSecrets:
+  - name: gcr-json-key
 nameOverride: ""
 fullnameOverride: ""
 
@@ -41,7 +42,7 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 80
+  port: 8000
 
 ingress:
   enabled: false
