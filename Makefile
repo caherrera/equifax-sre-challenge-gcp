@@ -58,4 +58,4 @@ k-create-namespace:
 	kubectl create namespace hola-mundo
 
 create-env-vars:
-	kubectl create secret generic laravel --from-env-file=src/.env
+	kubectl create secret generic laravel --from-env-file=.env
