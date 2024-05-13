@@ -37,7 +37,7 @@ docker-push:
 	docker push $(CONTAINER_NAME)
 
 docker-run:
-	docker run -it --rm $(CONTAINER_NAME) bash
+	docker run -u$(shell id -u):$(shell id -g) -v $(shell pwd)/src:/app -it --rm $(CONTAINER_NAME) bash
 
 create-image-pull-secret:
 	kubectl create secret docker-registry gcr-json-key \
