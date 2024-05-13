@@ -27,7 +27,9 @@ resource "google_compute_instance" "bastion" {
   }
 
   network_interface {
+    network = "default"
 
+    access_config {}
   }
 
   metadata = {
