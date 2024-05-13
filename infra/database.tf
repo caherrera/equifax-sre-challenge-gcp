@@ -14,8 +14,8 @@ resource "google_sql_database_instance" "db" {
     }
   }
 
-  depends_on = [google_service_networking_connection.google-managed-services]
-
+  depends_on          = [google_service_networking_connection.google-managed-services]
+  deletion_protection = false
 
 }
 
