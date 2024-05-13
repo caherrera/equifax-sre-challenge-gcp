@@ -1,4 +1,4 @@
-locals{
+locals {
   prefix = "${var.environment}-${var.name}"
 }
 resource "google_container_cluster" "kube" {

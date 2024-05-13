@@ -59,3 +59,10 @@ k-create-namespace:
 
 create-env-vars:
 	kubectl create secret generic laravel --from-env-file=.env
+
+
+packer:
+	make -C provision all
+
+terraform:
+	make -C infra all

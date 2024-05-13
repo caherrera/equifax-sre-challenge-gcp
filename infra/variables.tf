@@ -25,7 +25,7 @@ variable "dns_zone" {
 
 variable "zone" {
   description = "The GCP zone"
-  default     = "us-central1-a"  // Replace this with your default zone
+  default     = "us-central1-a" // Replace this with your default zone
 }
 
 variable "project_id" {

@@ -20,6 +20,6 @@ resource "google_project_iam_member" "role_gcr_reader" {
 }
 
 resource "local_file" "gcr" {
-  filename = "${ google_service_account.gcr.email }.json"
+  filename = "${google_service_account.gcr.email}.json"
   content  = base64decode(google_service_account_key.gcr.private_key)
 }

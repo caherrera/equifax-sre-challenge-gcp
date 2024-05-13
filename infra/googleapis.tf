@@ -1,5 +1,5 @@
 module "googleapis" {
-  source   = "./modules/googleapis"
+  source = "./modules/googleapis"
   services = [
     "cloudresourcemanager.googleapis.com",
     "container.googleapis.com",
